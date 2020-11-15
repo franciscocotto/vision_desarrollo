@@ -42,11 +42,11 @@
                         </div>
                     </div>
                     <div class="form-group numero">
-                        <label class="col-md-3 control-label"><strong class="colorred">*</strong>Deuda:</label>
+                        <label class="col-md-3 control-label"><strong class="colorred">*</strong>Deudsa:</label>
                         <div class="col-md-8"> 
                             <div class="input-group">
                               <span class="input-group-addon">$</span>
-                            <input class="form-control addprecio" id="money" type="text" name="precio"  placeholder="Ingresar el precio"  readonly/>    
+                                    <input class="form-control addprecio"  type="text" name="precio"   readonly="true"/>    
                             </div>
                         </div>
                     </div>  
@@ -55,7 +55,7 @@
                         <div class="col-md-8"> 
                             <div class="input-group">
                               <span class="input-group-addon">$</span>
-                            <input class="form-control addabono" id="money" type="text" name="abono1"  readonly/>    
+                                    <input class="form-control addabono" id="money" type="text" name="abono1"  readonly/>    
                             </div>
                         </div>
                     </div>   

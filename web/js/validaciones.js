@@ -14,6 +14,7 @@
     nit();
     alfanumayus();
     numeros();
+    numerosentero();
    // card();
     direcciones();
     ndecimales();
@@ -467,7 +468,26 @@ var numeros = function () {
     $(".numero").each(function () {
         $(this).keypress(function (event) {
             var Code = getKeyCodes(event);
-            return (Code > 47 && Code < 58 || Code == 8 || Code == 45);
+             if ((Code >= 48 && Code <= 57) || (Code == 8))
+                return true;
+            else if (Code == 46) {
+                var curVal = document.activeElement.value;
+                if (curVal != null && curVal.trim().indexOf('.') == -1)
+                    return true;
+                else
+                    return false;
+            }
+            else
+                return false;
+        });
+    });
+};
+
+var numerosentero = function () {
+    $(".numeroentero").each(function () {
+        $(this).keypress(function (event) {
+            var Code = getKeyCodes(event);
+              return (Code > 47 && Code < 58 || Code == 8);
         });
     });
 };

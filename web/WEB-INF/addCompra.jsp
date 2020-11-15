@@ -23,7 +23,7 @@
                             <input  class="form-control" row="10"  cols="30" name="descripcion" placeholder="Ingresar descripc&oacute;n" required="required" maxlength="60" minlength="3"/>  
                         </div>
                     </div>               
-                    <div class="form-group numero">
+                    <div class="form-group numeroentero">
                         <label class="col-md-3 control-label"><strong class="colorred">*</strong>Cantidad:</label>
                         <div class="col-md-8">
                             <input  class="form-control" name="cantidad" placeholder="Ingresar Cantidad" required="required" maxlength="8" minlength="1"/>  
