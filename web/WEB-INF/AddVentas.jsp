@@ -74,7 +74,7 @@
                         <li class="nav">
                             <a class="nav-link" href="servicios">
                                 <i class="fa fa-building" aria-hidden="true"></i>
-                                <span>Servicios B&aacute;sicos</span>
+                                <span>Proveedores y Servicios</span>
                             </a>  
                         </li>
                         <li class="nav">

@@ -70,7 +70,7 @@
                                                                  <li class="nav-active">
                                                                       <a class="nav-link activo" href="#">
 										<i class="fa fa-building" aria-hidden="true"></i>
-                                                                                <span>Servicios B&aacute;sicos</span>
+                                                                                <span>Proveedores y Servicios</span>
 									</a>  
                                                                       </li>
                                                                  <li class="nav">
@@ -112,7 +112,7 @@
 
 				<section role="main" class="content-body">
 					<header class="page-header">
-                                            <h2>Administraci&oacute;n de Servicios B&aacute;sicos</h2>
+                                            <h2>Administraci&oacute;n de Proveedores y Servicios</h2>
 					</header>		
 					<div class="row pt-4">
 						<div class="col">
@@ -124,7 +124,7 @@
 										<a href="#" class="card-action card-action-toggle" data-card-toggle></a>
 									</div>
 
-                                                                    <h2 class="card-title">Servicios B&aacute;sicos y de Alquiler</h2>
+                                                                    <h2 class="card-title">Proveedores y Servicios y de Alquiler</h2>
 								</header>
 								<div class="card-body">
                                                                     <div class="container-fluid">

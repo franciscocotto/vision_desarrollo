@@ -73,7 +73,7 @@
                         <li class="nav">
                             <a class="nav-link" href="servicios">
                                 <i class="fa fa-building" aria-hidden="true"></i>
-                                <span>Servicios B&aacute;sicos</span>
+                                <span>Proveedores y Servicios</span>
                             </a>  
                         </li>
                         <li class="nav">
@@ -299,7 +299,7 @@
                         <td></td>   
                     </tr>                    
                      <tr>
-                        <td>Servicios B&aacute;sicos</td>
+                        <td>Proveedores y Servicios</td>
                         <td>$<%out.println(r.getString(3)!= null ? r.getString(3) : '0');%></td>
                         <td></td>   
                     </tr>
@@ -369,7 +369,7 @@
                         <td></td>   
                     </tr>
                      <tr>
-                        <td>Servicios B&aacute;sicos</td>
+                        <td>Proveedores y Servicios</td>
                         <td>$<%out.println(r.getString(3)!= null ? r.getString(3) : '0');%></td>
                         <td></td>   
                     </tr>                 
@@ -446,7 +446,7 @@
                         <td>$<%out.println(r.getString(9)!= null ? r.getString(9) : '0');%></td>   
                     </tr>
                       <tr>
-                        <td>Servicios B&aacute;sicos</td>
+                        <td>Proveedores y Servicios</td>
                         <td>$<%out.println(r.getString(3)!= null ? r.getString(3) : '0');%></td>
                         <td style="background: #28a1f6; color:white"><strong>PATRIMONIO</strong></td>
                         <td></td>   
