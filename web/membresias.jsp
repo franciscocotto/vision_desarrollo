@@ -4,6 +4,7 @@
     Author     : Angel
 --%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page session="true" %>
 <!DOCTYPE html>
 <html class="fixed header-dark">
  <head>
@@ -20,7 +21,7 @@
        <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     </head>  
     <body>
-         <% // Para fijar una variable en un jsp
+        <% // Para fijar una variable en un jsp
             HttpSession sesion = request.getSession();
             String usuario;
             String rol;

@@ -115,10 +115,17 @@
 <filter-mapping>
     <filter-name>FiltroAcceso</filter-name>
     <url-pattern>/admin.jsp</url-pattern>
+    <url-pattern>/balance.jsp</url-pattern>
+    <url-pattern>/capital.jsp</url-pattern>
+    <url-pattern>/cobros.jsp</url-pattern>
+    <url-pattern>/compras.jsp</url-pattern>
+    <url-pattern>/deudas.jsp</url-pattern>
     <url-pattern>/empleados</url-pattern>
     <url-pattern>/error.jsp</url-pattern>
-    <url-pattern>/membresia</url-pattern>
+    <url-pattern>/membresia.jsp</url-pattern>
+    <url-pattern>/servicios.jsp</url-pattern>
     <url-pattern>/user.jsp</url-pattern>
+    <url-pattern>/ventas.jsp</url-pattern>
 </filter-mapping>
 </web-app>
 

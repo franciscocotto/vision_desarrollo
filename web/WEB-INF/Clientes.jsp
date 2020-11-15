@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page session="true" %>
         <div id="wrapper">
             <!--menu estilo responsivo-->
             <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">

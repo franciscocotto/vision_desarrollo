@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page session="true" %>
 <% Integer valor = (Integer)getServletContext().getAttribute("admin");%>
 <jsp:include page="header-top.jsp" />
 		<div class="inner-wrapper">

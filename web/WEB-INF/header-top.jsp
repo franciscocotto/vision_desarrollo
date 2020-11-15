@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page session="true" %>
 <header class="header">
 			<div class="logo-container">
 				<a href="../2.2.0" class="logo">
