@@ -107,5 +107,18 @@
 <servlet-name>capital</servlet-name>
 <url-pattern>/capital</url-pattern>
 </servlet-mapping>
+
+<filter>
+    <filter-name>FiltroAcceso</filter-name>
+    <filter-class>filtros.FiltroAcceso</filter-class>
+</filter>
+<filter-mapping>
+    <filter-name>FiltroAcceso</filter-name>
+    <url-pattern>/admin.jsp</url-pattern>
+    <url-pattern>/empleados</url-pattern>
+    <url-pattern>/error.jsp</url-pattern>
+    <url-pattern>/membresia</url-pattern>
+    <url-pattern>/user.jsp</url-pattern>
+</filter-mapping>
 </web-app>
 

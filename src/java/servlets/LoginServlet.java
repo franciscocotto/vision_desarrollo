@@ -44,29 +44,28 @@ public class LoginServlet extends HttpServlet {
         LoginDao loginDao = new LoginDao();
         try {
             String userValidate = loginDao.authenticateUser(loginBean);
+            HttpSession session = request.getSession();
             if (userValidate.equals("Admin_Role")) {
                 System.out.println("Admin's Home");
-                HttpSession session = request.getSession(); //Creating a session
                 session.setAttribute("Admin", userName); //setting session attribute
+                session.setAttribute("user", userName);
+                session.setAttribute("rol", userValidate);
+                session.setAttribute("estado", "activo");
                 request.setAttribute("userName", userName);
-                request.getRequestDispatcher("admin.jsp").forward(request, response);
-            } else if (userValidate.equals("Editor_Role")) {
-                System.out.println("Editor's Home");
-                HttpSession session = request.getSession();
-                session.setAttribute("Editor", userName);
-                request.setAttribute("userName", userName);
-                request.getRequestDispatcher("editor.jsp").forward(request, response);
+                response.sendRedirect("admin.jsp");
             } else if (userValidate.equals("User_Role")) {
                 System.out.println("User's Home");
-                HttpSession session = request.getSession();
                 session.setMaxInactiveInterval(10 * 60);
                 session.setAttribute("User", userName);
+                session.setAttribute("user", userName);
+                session.setAttribute("rol", userValidate);
+                session.setAttribute("estado", "activo");
                 request.setAttribute("userName", userName);
-                request.getRequestDispatcher("user.jsp").forward(request, response);
+                response.sendRedirect("user.jsp");
             } else {
                 System.out.println("Error message = " + userValidate);
                 request.setAttribute("errMessage", userValidate);
-                request.getRequestDispatcher("login.jsp").forward(request, response);
+                response.sendRedirect("login.jsp");
             }
         } catch (IOException e1) {
             e1.printStackTrace();

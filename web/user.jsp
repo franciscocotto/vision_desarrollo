@@ -21,6 +21,17 @@
     </head> 
     <body>
      <% // Para fijar una variable en un jsp
+         HttpSession sesion = request.getSession();
+            String usuario;
+            String rol;
+            if(sesion.getAttribute("user")!=null && sesion.getAttribute("rol")!=null){
+                usuario = sesion.getAttribute("user").toString();
+                rol = sesion.getAttribute("rol").toString();
+            }
+            else{
+                out.print("<script>location.replace('login.jsp');</script>");
+            }
+         
             application.setAttribute("admin", new Integer(2));
 
              // Para leerla en otro o el mismo JSP

@@ -4,6 +4,7 @@
     Author     : Angel
 --%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page session="true" %>
 <!DOCTYPE html>
 <html class="fixed header-dark">
  <head>
@@ -21,6 +22,17 @@
     </head> 
     <body>
          <% // Para fijar una variable en un jsp
+            HttpSession sesion = request.getSession();
+            String usuario;
+            String rol;
+            if(sesion.getAttribute("user")!=null && sesion.getAttribute("rol")!=null){
+                usuario = sesion.getAttribute("user").toString();
+                rol = sesion.getAttribute("rol").toString();
+            }
+            else{
+                out.print("<script>location.replace('login.jsp');</script>");
+            }
+             
            application.getAttribute("admin"); 
              // Para leerla en otro o el mismo JSP
                 Integer valor = (Integer)application.getAttribute("admin");

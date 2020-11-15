@@ -18,15 +18,18 @@
 						</figure>
 						<div class="profile-info" data-lock-name="John Doe" data-lock-email="johndoe@okler.com">
                                                     <span class="name">
-                                                     <% 
-                                                      Integer valor = (Integer)getServletContext().getAttribute("admin");
-                                                       if( valor == 1){
-                                                      %> 
-                                                      Administrador
-                                                     <%} else{
-                                                      %> 
-                                                      Empleado
-                                                     <%} %> 
+                                                      <% 
+                                                        String url_inicio = "";
+                                                        Integer valor = (Integer)getServletContext().getAttribute("admin");
+                                                         if( valor == 1){
+                                                             url_inicio = "admin.jsp";
+                                                        %> 
+                                                        Administrador
+                                                       <%} else{
+                                                            url_inicio = "user.jsp";
+                                                        %> 
+                                                        Empleado
+                                                       <%} %>  
                                                       </span>
 							<span class="role"></span>
 						</div>

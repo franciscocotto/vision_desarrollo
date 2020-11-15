@@ -30,8 +30,6 @@ passwordDB = resultSet.getString("password");
 roleDB = resultSet.getString("role");
 if(userName.equals(userNameDB) && password.equals(passwordDB) && roleDB.equals("admin"))
 return "Admin_Role";
-else if(userName.equals(userNameDB) && password.equals(passwordDB) && roleDB.equals("editor"))
-return "Editor_Role";
 else if(userName.equals(userNameDB) && password.equals(passwordDB) && roleDB.equals("user"))
 return "User_Role";
 }

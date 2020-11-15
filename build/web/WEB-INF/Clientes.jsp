@@ -17,11 +17,14 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i>&nbsp;Bienvenido(a):
                          <% 
+                        String url_inicio = "";
                         Integer valor = (Integer)getServletContext().getAttribute("admin");
                          if( valor == 1){
+                             url_inicio = "admin.jsp";
                         %> 
                         Administrador
                        <%} else{
+                            url_inicio = "user.jsp";
                         %> 
                         Empleado
                        <%} %>
