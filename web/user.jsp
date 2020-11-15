@@ -7,6 +7,7 @@
 <%@page session="true" %>
 <!DOCTYPE html>
 <html class="fixed header-dark">
+    <%@page session="true" %>
  <head>
        <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -33,7 +34,7 @@
                 out.print("<script>location.replace('login.jsp');</script>");
             } 
              
-           application.getAttribute("admin"); 
+           application.setAttribute("admin", new Integer(2)); 
              // Para leerla en otro o el mismo JSP
                 Integer valor = (Integer)application.getAttribute("admin");
         %>
