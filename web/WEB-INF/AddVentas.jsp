@@ -118,6 +118,9 @@
         <header class="page-header">
             <h2>Administraci&oacute;n de Ventas</h2>
         </header>
+           <% 
+                         if( valor == 1){
+                        %>  
         		<div class="row">
 						<div class="col">
 							<section class="card">
@@ -131,9 +134,7 @@
 								<div id="card-calendar" class="card-body">
                                                                     <hr>
        <div class="container-fluid">
-                        <% 
-                         if( valor == 1){
-                        %>  
+                     
                     
                     
                                         <%conexion.ConexionJDBC con = new conexion.ConexionJDBC();
@@ -218,8 +219,7 @@
                     System.out.println("error: "+ex );
      }%>  
      
-      <%}
-                        %> 
+ 
                 </div>  
          
 								</div>
@@ -227,7 +227,8 @@
 						</div>
 
 					</div>
-
+     <%}
+                        %> 
         <div class="row pt-4">
             <div class="col">
              

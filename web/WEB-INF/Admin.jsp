@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<% Integer valor = (Integer)getServletContext().getAttribute("admin");%>
 <jsp:include page="header-top.jsp" />
 		<div class="inner-wrapper">
 			<!-- start: sidebar -->
@@ -29,6 +30,9 @@
 										<span>Beneficios</span>
 									</a> 
                                                                 </li>
+                                                                 <% 
+                                                                if( valor == 1){
+                                                                 %>  
                                                                  <li class="nav">
                                                                        <a class="nav-link" href="empleados">
 										<i class="fas fa-user-friends" aria-hidden="true"></i>
@@ -47,12 +51,16 @@
 										<span>Cuentas por Pagar</span>
 									</a>  
                                                                    </li>
+                                                                    <%}  %>  
                                                                  <li class="nav">
                                                                      <a class="nav-link" href="ventas">
 										<i class="fas fa-dollar-sign" aria-hidden="true"></i>
 										<span>Ventas</span>
 									</a> 
                                                                    </li>
+                                                                    <% 
+                                                                    if( valor == 1){
+                                                                   %> 
                                                                  <li class="nav">
                                                                      <a class="nav-link" href="cobros">
 										<i class="fa fa-fw fa-check" aria-hidden="true"></i>
@@ -77,6 +85,8 @@
 										<span>Balances</span>
 									</a>  
 								</li>
+                                                                  <%}
+                                                                    %> 
                                                                	
 							</ul>
 						</nav>

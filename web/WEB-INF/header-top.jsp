@@ -28,7 +28,7 @@
                                                       Empleado
                                                      <%} %> 
                                                       </span>
-							<span class="role">Corredor</span>
+							<span class="role"></span>
 						</div>
 
 						<i class="fa custom-caret"></i>
@@ -38,7 +38,7 @@
 						<ul class="list-unstyled mb-2">
 							<li class="divider"></li>
 							<li>
-								<a role="menuitem" tabindex="-1" href="logout.php"><i class="fas fa-power-off"></i> Cerrar Sesi&oacute;n</a>
+								<a role="menuitem" tabindex="-1" href="<%=request.getContextPath()%>/LogoutServlet""><i class="fas fa-power-off"></i> Cerrar Sesi&oacute;n</a>
 							</li>
 						</ul>
 					</div>

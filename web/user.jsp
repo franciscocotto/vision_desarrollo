@@ -5,17 +5,19 @@
 --%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html class="fixed header-dark">
  <head>
-        <meta charset="utf-8">
+       <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="">
         <meta name="author" content="">
-        <title>Gimnasio</title>
+        <title>Visi&oacute;n y Desarrollo</title>
         <!-- Bootstrap Core CSS -->
         <link href="css/sb-admin.css" rel="stylesheet">
-   
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800|Shadows+Into+Light" rel="stylesheet" type="text/css">
+         <script src="js/dashboard/modernizr.js"></script>
+       <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     </head> 
     <body>
      <% // Para fijar una variable en un jsp
@@ -25,7 +27,7 @@
                 Integer valor = (Integer)application.getAttribute("admin");
         %>
         <!--include que muestra los datos de los clientes-->
-       <jsp:include page="WEB-INF/Clientes.jsp" />
+       <jsp:include page="WEB-INF/Admin.jsp" />
 <!--       llama todos los script-->        
         <script src="js/scripts.js"></script>
 <!--       scripts que permiten obtener datos del cliente en la ventana emergente-->
