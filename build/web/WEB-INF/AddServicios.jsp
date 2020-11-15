@@ -124,7 +124,7 @@
 										<a href="#" class="card-action card-action-toggle" data-card-toggle></a>
 									</div>
 
-                                                                    <h2 class="card-title">Proveedores y Servicios y de Alquiler</h2>
+                                                                    <h2 class="card-title">Proveedores y Servicios</h2>
 								</header>
 								<div class="card-body">
                                                                     <div class="container-fluid">
