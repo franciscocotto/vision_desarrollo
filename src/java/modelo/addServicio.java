@@ -20,7 +20,8 @@ public class addServicio {
             ConexionJDBC con = new ConexionJDBC();    
             con.conectar();
             //INSERT SQL
-            String sql = "INSERT INTO servicios (descripcion,fecha,monto)"+"VALUES(?,?,?)";
+            //String sql = "INSERT INTO servicios (descripcion,fecha,monto)"+"VALUES(?,?,?)";
+            String sql = "call pago_servicios(?,?,?)";
             String status = "";
            //PREPARANDO SCRIPT PARA SUBIDA
             try(PreparedStatement pst = con.getConexion().prepareStatement(sql)){

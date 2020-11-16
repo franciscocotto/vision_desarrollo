@@ -20,8 +20,9 @@ public class addVenta {
             ConexionJDBC con = new ConexionJDBC();    
             con.conectar();
             //INSERT SQL
-            String sql = "INSERT INTO ventas (nombre,descripcion,cantidad,precio,forma_de_pago,estado,abono,total_pago)"+"VALUES(?,?,?,?,?,?,?,?)";
+            //String sql = "INSERT INTO ventas (nombre,descripcion,cantidad,precio,forma_de_pago,estado,abono,total_pago)"+"VALUES(?,?,?,?,?,?,?,?)";
             String status = "";
+            String sql = "call ingreso_ventas(?,?,?,?,?,?)";
             
            //PREPARANDO SCRIPT PARA SUBIDA
             try(PreparedStatement pst = con.getConexion().prepareStatement(sql)){
@@ -31,16 +32,7 @@ public class addVenta {
                 pst.setDouble(4, venta.precio);
                 pst.setInt(5, venta.pago); 
                 pst.setInt(6, venta.pago);
-                if(venta.pago==1){
-                double value = 0.0;
-                 pst.setDouble(7, venta.precio);
-                 pst.setDouble(8, value);               
-                }else{
-                double value = 0.0;
-                 pst.setDouble(7, value);
-                 pst.setDouble(8, venta.precio);
-                    
-                    }
+
                 int i = pst.executeUpdate();
                 // ENVIA MENSAJE DEPENDIENDO SI DE GUARDO O NO
                 if (i != 0) {
@@ -62,9 +54,7 @@ public class addVenta {
             ConexionJDBC con = new ConexionJDBC();    
             con.conectar();
             //UPDATE SQL
-            String sql = "UPDATE ventas\n" +
-            "SET  nombre=?, descripcion=?, cantidad=?, precio=?, forma_de_pago=?, estado=?, abono=?, total_pago=?\n" +
-            "WHERE  id_ventas="+venta.codigo+";";
+            String sql = "call actualizar_ventas(?,?,?,?,?,?,?,?,?)";
             String status = "";
             try(PreparedStatement pst = con.getConexion().prepareStatement(sql)){
                 pst.setString(1, venta.nombre);
@@ -73,16 +63,15 @@ public class addVenta {
                 pst.setDouble(4, venta.precio);
                 pst.setInt(5, venta.pago);   
                 pst.setInt(6, venta.pago);
-                 if(venta.pago==1){
-                double value = 0.0;
-                 pst.setDouble(7, venta.precio);
-                 pst.setDouble(8, value);               
-                }else{
-                double value = 0.0;
-                 pst.setDouble(7, value);
-                 pst.setDouble(8, venta.precio);
-                    
-                    }
+                if(venta.abono==null){
+                    venta.abono = 0.0;
+                }
+                if(venta.total==null){
+                    venta.total = 0.0;
+                }
+                pst.setDouble(7, venta.abono);
+                pst.setDouble(8, venta.total);
+                pst.setInt(9, venta.codigo);
                 int i = pst.executeUpdate();
                  // ENVIA MENSAJE DEPENDIENDO SI DE EDITO O NO
                  if (i != 0) {
@@ -106,12 +95,15 @@ public class addVenta {
             ConexionJDBC con = new ConexionJDBC();    
             con.conectar();
             //UPDATE SQL
-            String sql = "UPDATE ventas\n" +
+            /*String sql = "UPDATE ventas\n" +
             "SET  forma_de_pago=?, estado=?, abono=?, total_pago=?\n" +
-            "WHERE  id_ventas="+venta.codigo+";";
+            "WHERE  id_ventas="+venta.codigo+";";*/
+            String sql = "call abono_venta(?,?)";
             String status = "";
             try(PreparedStatement pst = con.getConexion().prepareStatement(sql)){
-               double k = (venta.total - venta.descuento);
+               pst.setInt(1, venta.codigo);
+               pst.setDouble(2, venta.descuento);
+                /*double k = (venta.total - venta.descuento);
                Double j = venta.abono;
                if(k == 0 || k < 0){
                  pst.setDouble(1, 1);
@@ -130,7 +122,7 @@ public class addVenta {
                pst.setDouble(2, 2);
                pst.setDouble(3, venta.abono);
                pst.setDouble(4, k);
-                }               
+                }*/               
                 int i = pst.executeUpdate();
                  // ENVIA MENSAJE DEPENDIENDO SI DE EDITO O NO
                  if (i != 0) {
@@ -155,8 +147,7 @@ public class addVenta {
             con.conectar();
             //prepara subida de delete 
             Statement stmt =  con.conectar().createStatement();
-            stmt.execute( "DELETE FROM ventas\n" +
-           "WHERE  id_ventas="+venta.codigo+";");             
+            stmt.execute("call eliminar_venta("+venta.codigo+")");             
             
        }
 
