@@ -1197,7 +1197,7 @@
      *
      * @returns the created dialog instance
      */
-    var $textAndPic0 = '<div><span class="glyphicon glyphicon-exclamation-sign" style="color:#337ab7; font-size: 25px; margin-bottom:20px;"></span></div>';
+    var $textAndPic0 = '<div><span class="glyphicon glyphicon-exclamation-sign" style="color:#b73333; font-size: 25px; margin-bottom:20px;"></span></div>';
      var $textAndUser = '<h5 class="h5alert"><b>Estimado Usuario,</b></h5>';
     BootstrapDialog.alert = function () {
         var alertOptions = {};

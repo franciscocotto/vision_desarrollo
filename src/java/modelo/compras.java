@@ -20,7 +20,7 @@ public class compras {
     Double abono;
     Double descuento;
     Double total;
-
+    public static Integer respuesta;
     //constructor por defecto
    public compras() {
        
@@ -37,6 +37,14 @@ public class compras {
         this.abono = abono;
         this.descuento = descuento;
         this.total = total;
+    }
+
+    public static Integer getRespuesta() {
+        return respuesta;
+    }
+
+    public static void setRespuesta(Integer respuesta) {
+        compras.respuesta = respuesta;
     }
 
     public Integer getCodigo() {

@@ -9,6 +9,9 @@ package servlets;
 import conexion.ConexionJDBC;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -57,7 +60,11 @@ public class formEditCompra extends HttpServlet {
             compra.setPago(Integer.parseInt(pago));
             //creando objeto para guardar cliente
             modelo.addCompra editaCompra = new modelo.addCompra();
+        try {
             editaCompra.edita(compra);
+        } catch (SQLException ex) {
+            Logger.getLogger(formEditCompra.class.getName()).log(Level.SEVERE, null, ex);
+        }
                 response.sendRedirect("compras");//si se guarda exitosamente se redirecciona a membresia
     }
     }

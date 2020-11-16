@@ -60,10 +60,10 @@
             $('.adddescripcion', myModal).val(descripcion);
             $('.addcantidad', myModal).val(cantidad);
             $('.addprecio', myModal).val(precio);
-            if(pago==="1\n"){
+            if(pago==="CONTADO\n"){
                 $('.addpago', myModal).prop('selectedIndex',0);
             }
-            else if(pago==="2\n"){
+            else if(pago==="CREDITO\n"){
               $('.addpago', myModal).prop('selectedIndex',1);
             }
              //mostrar modal

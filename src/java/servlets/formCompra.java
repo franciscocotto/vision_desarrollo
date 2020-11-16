@@ -7,6 +7,10 @@ package servlets;
 
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -53,8 +57,18 @@ public class formCompra extends HttpServlet {
           
             //creando objeto para guardar cliente
             modelo.addCompra addcompra = new modelo.addCompra();
+        try {
             addcompra.agrega(compra);
+        } catch (SQLException ex) {
+            Logger.getLogger(formCompra.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if(compra.respuesta.equals(1)){
+            response.sendRedirect("compras");
+                    // below code parse json receive ajax call     jsonobject jsonobj = (jsonobject) jsonvalue.parse(request.getparameter("para"));     system.out.println(jsonobj.get("message"));     jsonobject obj = new jsonobject();     obj.put("address", "address of users");     out.print(obj); 
+        }
+        else{
             response.sendRedirect("compras");//si se guarda exitosamente se redirecciona a membresia
+            }
     }
 
 

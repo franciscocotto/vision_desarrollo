@@ -3,6 +3,7 @@
     Created on : 12-nov-2018, 23:40:36
     Author     : Angel
 --%>
+<%@page import="modelo.compras"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page session="true" %>
 <!DOCTYPE html>
@@ -43,7 +44,18 @@
        <jsp:include page="WEB-INF/AddCompras.jsp" />
         <!--llama todos los script-->
         <script src="js/scripts.js"></script>
-        <script>   
+       <script>
+           ﻿$(document).ready(function () {  
+             var response = <%out.print(compras.respuesta);%>;
+             if(response==1){
+                 BootstrapDialog.alert('El Monto de la Compra es superior al total de dinero en caja');
+                 <% compras.setRespuesta(2); %>
+                
+             }else{
+                 
+             }
+            });
+    
 //            script para edita datos de tabla en modal
        $( "a.edit" ).each(function(index) { 
            $(this).on("click", function(){
@@ -92,5 +104,7 @@
             $('#money').maskMoney();
         });
         </script>
+        
+        
     </body>
 </html>
