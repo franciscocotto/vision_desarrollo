@@ -10,15 +10,37 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.sql.SQLException;
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
+import javax.swing.JOptionPane; // import javax packages
 
 
 
 public class addCompra {
+    Double deuda, existencia, res;
        //metodo para agregar registros en la base de datos  
        public void agrega(compras compra){
            //conexion a la base de datos
             ConexionJDBC con = new ConexionJDBC();    
             con.conectar();
+            String sql2="SELECT SUM(debe) AS deuda, SUM(haber) AS existencia FROM cuenta_caja"; 
+  
+                       
+                try(Statement st3 = con.conectar().createStatement();){
+                      ResultSet resultado=st3.executeQuery(sql2);  //resultset %> 
+                      while (resultado.next()){
+                        deuda = Double.parseDouble(resultado.getString("deuda"));
+                        existencia = Double.parseDouble(resultado.getString("existencia"));
+                      }
+                     res = deuda - existencia;
+                   } catch (SQLException ex) {//captura error de existir alguno.
+                    System.out.println("error: "+ex );
+                }
+                
+           if(compra.precio > res){
+
+
+           } else{
             //INSERT SQL
             String sql = "CALL ingreso_compras(?,?,?,?,?,?)";
             String status = "";
@@ -53,8 +75,8 @@ public class addCompra {
             } catch (SQLException ex) {//captura excepciones del codigo si hubo error
                 ex.printStackTrace();         
         }
-            
-            
+           
+           }   
        }
        //metodo para editar  registros en la base de datos
          public void edita(compras compra){
