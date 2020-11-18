@@ -68,11 +68,9 @@ public class addServicio {
  
             } catch (SQLException ex) {//captura excepciones del codigo si hubo error
                 ex.printStackTrace();         
-        }
-            
-            
-            
-       }
+        }      
+         
+    }
       // metodo para eliminar  registros en la base de datos 
        public void elimina(servicios servicio) throws SQLException{
            //conexion a base de datos 

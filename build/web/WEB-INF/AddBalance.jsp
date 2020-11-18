@@ -1,9 +1,18 @@
+<%@page import="java.util.Locale"%>
+<%@page import="java.text.NumberFormat"%>
+<%@page import="java.sql.CallableStatement"%>
 <%@page import="java.sql.SQLException"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.Statement"%>
 <%@page import="java.sql.Connection"%>
- <% Integer valor = (Integer) getServletContext().getAttribute("admin");%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<% Integer valor = (Integer) getServletContext().getAttribute("admin");%>
 <jsp:include page="header-top.jsp" />
+<%
+    NumberFormat formatoImporte = NumberFormat.getCurrencyInstance();
+    formatoImporte = NumberFormat.getCurrencyInstance(new Locale("en","US"));
+%>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <div class="inner-wrapper">
     <!-- start: sidebar -->
     <aside id="sidebar-left" class="sidebar-left">
@@ -33,9 +42,8 @@
                                 <span>Beneficios</span>
                             </a> 
                         </li>
-                        <%
-                            if (valor == 1) {
-                        %>  
+
+
                         <li class="nav">
                             <a class="nav-link" href="empleados">
                                 <i class="fas fa-user-friends" aria-hidden="true"></i>
@@ -54,16 +62,14 @@
                                 <span>Cuentas por Pagar</span>
                             </a>  
                         </li>
-                           <%}  %>  
+                        
                         <li class="nav">
                             <a class="nav-link" href="ventas">
                                 <i class="fas fa-dollar-sign" aria-hidden="true"></i>
                                 <span>Ventas</span>
                             </a> 
                         </li>
-                         <% 
-                                                                    if( valor == 1){
-                                                                   %> 
+ 
                         <li class="nav">
                             <a class="nav-link" href="cobros">
                                 <i class="fa fa-fw fa-check" aria-hidden="true"></i>
@@ -88,8 +94,6 @@
                                 <span>Balances</span>
                             </a>  
                         </li>
-                        <%}
-                        %> 
                     </ul>
                 </nav>
                 <hr class="separator" />
@@ -117,48 +121,29 @@
         <header class="page-header">
             <h2>Administraci&oacute;n de Ventas</h2>
         </header>
-        		<div class="row">
-						<div class="col">
-							<section class="card">
-								<header class="card-header">
-									<div class="card-actions">
-										<a href="#" class="card-action card-action-toggle" data-card-toggle></a>
-									</div>
-
-									<h2 class="card-title">Estad&iacute;sticas</h2>
-								</header>
-								<div id="card-calendar" class="card-body">
-                                                                    <hr>
-             <div class="container-fluid">
-                        <% 
-                         if( valor == 1){
-                        %>  
-                    
-                    
-                                        <%conexion.ConexionJDBC con = new conexion.ConexionJDBC();
-          Connection  cn2 = con.conectar();//se conecto a la base de datos
-          String sql3="Select cast(cuentas_cobrar as DECIMAL(18,2)),  cast(cuentas_pagar as DECIMAL(18,2)), cast(ventas as DECIMAL(18,2)), cast(capital as DECIMAL(18,2)) from public.balances";
-           int sum = 0;
-           Statement st2;               
-                try {
-                   st2 = cn2.createStatement();
-                   ResultSet r=st2.executeQuery(sql3);
-                       if(r.next()){
-                          
-                            //  String sum = r.getString("sumprice");//resultset   
-                            %>  
-                         
-                            
-                    <div class="row">
+        <div class="row">
+            <div class="col">
+		<section class="card">
+                    <header class="card-header">
+			<div class="card-actions">
+                            <a href="#" class="card-action card-action-toggle" data-card-toggle></a>
+			</div>
+                            <h2 class="card-title">Estad&iacute;sticas</h2>
+                    </header>
+                    <div id="card-calendar" class="card-body">
+                        <hr>
+                     <div class="container-fluid">
+                        
+                        <div class="row">
                     <div class="col-lg-3 col-md-6">
                         <div class="panel panel-success">
                             <div class="panel-heading h145">
                                 <div class="row vertical">
                                     <div class="col-xs-4">
-                                        <i class="fa fa-money fa-4x"></i>
+                                        <i class="material-icons" style="font-size: 50px">request_quote</i>
                                     </div>
                                     <div class="col-xs-8 bleft">
-                                        <div class="huge">$<%out.println(r.getString(1)!= null ? r.getString(1) : '0');%></div>
+                                        <div class="huge">$1000</div>
                                         <div>Total Cuentas por Cobrar</div>
                                     </div>
                                 </div>
@@ -171,10 +156,10 @@
                             <div class="panel-heading h145">
                                 <div class="row vertical">
                                     <div class="col-xs-4">
-                                         <i class="fa fa-money fa-4x"></i>
+                                         <i class="material-icons" style="font-size: 50px">payments</i>
                                     </div>
                                     <div class="col-xs-8 bleft">
-                                        <div class="huge">$<%out.println(r.getString(2)!= null ? r.getString(2) : '0');%></div>
+                                        <div class="huge">$</div>
                                        <div>Total Cuentas por Pagar</div>
                                     </div>
                                 </div>
@@ -186,10 +171,10 @@
                             <div class="panel-heading h145">
                                 <div class="row vertical">
                                     <div class="col-xs-4">
-                                        <i class="fa fa-money fa-4x"></i>
+                                        <i class="material-icons" style="font-size: 50px">monetization_on</i>
                                     </div>
                                     <div class="col-xs-8 bleft">
-                                        <div class="huge">$<%out.println(r.getString(3)!= null ? r.getString(3) : '0');%></div>
+                                        <div class="huge">$</div>
                                         <div>Total de Ingresos Beneficios</div>
                                     </div>
                                 </div>
@@ -201,10 +186,10 @@
                             <div class="panel-heading h145">
                                 <div class="row vertical">
                                     <div class="col-xs-4">
-                                        <i class="fa fa-money fa-4x"></i>
+                                        <i class="material-icons" style="font-size: 50px">account_balance</i>
                                     </div>
                                     <div class="col-xs-8 bleft">
-                                        <div class="huge">$<%out.println(r.getString(4)!= null ? r.getString(4) : '0') ;%></div>
+                                        <div class="huge">$</div>
                                         <div>Total de Dinero 
                                             <br> de Capital</div>
                                     </div>
@@ -213,12 +198,7 @@
                                                   </div>
                     </div>
                 </div>
-                         <%}} catch (SQLException ex) {//captura error de existir alguno.
-                    System.out.println("error: "+ex );
-     }%>  
-     
-      <%}
-                        %> 
+
                 </div>
          
 								</div>
@@ -259,24 +239,22 @@
         <li role="presentation"><a href="#example2-tab4" aria-controls="example2-tab4" role="tab" data-toggle="tab">Balance General</a></li>
     </ul>
 
+    <!--Tabla Balance de comprobacion-->
     <!-- Tab panes -->
     <div class="tab-content">
         <div role="tabpanel" class="tab-pane fade in active" id="example2-tab1">
             <hr>
-             <%conexion.ConexionJDBC con = new conexion.ConexionJDBC();
-          Connection  cn2 = con.conectar();//se conecto a la base de datos
-           String sql3="Select cast(ventas as DECIMAL(18,2)),cast(cuentas_cobrar as DECIMAL(18,2)), cast(servicios_basicos as DECIMAL(18,2)), cast(compras as DECIMAL(18,2)), cast(cuentas_pagar as DECIMAL(18,2)), cast(capital as DECIMAL(18,2)), cast(iva_credito as DECIMAL(18,2)),cast(iva_debito as DECIMAL(18,2)),cast(salarios as DECIMAL(18,2)) from public.balances";
-           int sum = 0;
-           Statement st2;               
-                try {
-                   st2 = cn2.createStatement();
-                   ResultSet r=st2.executeQuery(sql3);
-                       if(r.next()){
-                          
-                            //  String sum = r.getString("sumprice");//resultset   
-                            %>  
-            
-
+            <%
+                conexion.ConexionJDBC con = new conexion.ConexionJDBC();
+                Connection  cn = con.conectar();//se conecto a la base de datos
+                String sql="call balance_comprobacion()";
+                //String sql = "select * from compras";
+                Statement st;
+                try{
+                    st = cn.createStatement();
+                    ResultSet res = st.executeQuery(sql);
+                    while(res.next()){
+            %>
             <table id="tab1" class="table2 tabler2 table-striped table-bordered table-condensed" cellspacing="0" width="100%">
                 <thead>
                     <tr>
@@ -287,64 +265,75 @@
                 </thead>
                 <tbody>
 
-                     <tr>
-                        <td>Ventas</td>
-                        <td>$<%out.println(r.getString(1)!= null ? r.getString(1) : '0');%></td>
+                    <tr>
+                        <td>Caja</td>
+                        <td><%out.print(formatoImporte.format(res.getDouble("caja")));%></td>
                         <td></td>   
                     </tr>
                              
                      <tr>
+                        <td>Inventario</td>
+                        <td><%out.print(formatoImporte.format(res.getDouble("inventario")));%></td>
+                        <td></td>   
+                    </tr>                              
+                     <tr>
                         <td>Cuentas por Cobrar</td>
-                        <td>$<%out.println(r.getString(2)!= null ? r.getString(2) : '0');%></td>
-                        <td></td>   
-                    </tr>                    
-                     <tr>
-                        <td>Proveedores y Servicios</td>
-                        <td>$<%out.println(r.getString(3)!= null ? r.getString(3) : '0');%></td>
+                        <td><%out.print(formatoImporte.format(res.getDouble("cuentas_por_cobrar")));%></td>
                         <td></td>   
                     </tr>
                      <tr>
-                        <td>Compras</td>
-                        <td></td>
-                        <td>$<%out.println(r.getString(4)!= null ? r.getString(4) : '0');%></td>   
+                        <td>IVA Credito Fiscal</td>
+                        <td><%out.print(formatoImporte.format(res.getDouble("iva_credito")));%></td>
+                        <td></td>   
                     </tr>
                      <tr>
-                        <td>Cuentas por Pagar</td>
+                        <td>Cuentas por pagar</td>
                         <td></td>
-                        <td>$<%out.println(r.getString(5)!= null ? r.getString(5) : '0');%></td>   
-                    </tr>
-                     <tr>
-                        <td>Capital</td>
-                        <td></td>
-                        <td>$<%out.println(r.getString(6)!= null ? r.getString(6) : '0');%></td>   
+                        <td><%out.print(formatoImporte.format(res.getDouble("cuentas_por_pagar")));%></td>   
                     </tr>
                     <tr>
-                        <td>IVA Credito Fiscal</td>
-                        <td>$<%out.println(r.getString(7)!= null ? r.getString(7) : '0');%></td>
-                        <td></td>   
-                    </tr>
-                      <tr>
                         <td>IVA Debito Fiscal</td>
                         <td></td>
-                        <td>$<%out.println(r.getString(8)!= null ? r.getString(8) : '0');%></td>   
+                        <td><%out.print(formatoImporte.format(res.getDouble("iva_debito")));%></td>   
                     </tr>
-                     <tr>
-                        <td>Salarios</td>
-                        <td>$<%out.println(r.getString(9)!= null ? r.getString(9) : '0');%></td>
+                    <tr>
+                        <td>Capital</td>
+                        <td></td>
+                        <td><%out.print(formatoImporte.format(res.getDouble("capital")));%></td>   
+                    </tr> 
+                    <tr>
+                        <td>Ingreso por Venta</td>
+                        <td></td>
+                        <td><%out.print(formatoImporte.format(res.getDouble("ingreso_por_venta")));%></td>   
+                    </tr> 
+                    <tr>
+                        <td>Costo de la venta</td>
+                        <td><%out.print(formatoImporte.format(res.getDouble("costo_de_venta")));%></td>
                         <td></td>   
-                    </tr>
-                  
+                    </tr> 
+                    <tr>
+                        <td>Gasto Servicios y Proveedores</td>
+                        <td><%out.print(formatoImporte.format(res.getDouble("servicios")));%></td>
+                        <td></td>   
+                    </tr> 
                 </tbody>
-        <tfoot>
-             <tr>
-                        <th align="right"><strong>TOTAL</strong></th>
-                        <th></th>
-                        <th></th>   
+                <tfoot>
+                    <tr style="font-style: bold">
+                        <td>TOTAL</td>
+                        <td><%out.print(formatoImporte.format(res.getDouble("Debe")));%></td>
+                        <td><%out.print(formatoImporte.format(res.getDouble("Haber")));%></td>    
                     </tr>
-        </tfoot>
-
+                </tfoot>
             </table>
-
+            <%
+                }
+                st.close();
+                cn.close();
+                }
+                catch(Exception e){
+                    e.printStackTrace();
+                }
+            %>
              <hr>
         </div>
         <div role="tabpanel" class="tab-pane fade" id="example2-tab2">
@@ -360,25 +349,25 @@
                 <tbody>
                     <tr>
                         <td>Ventas</td>
-                        <td>$<%out.println(r.getString(1)!= null ? r.getString(1) : '0');%></td>
+                        <td>$</td>
                         <td></td>   
                     </tr>
                      <tr>
                         <td>Salarios</td>
-                        <td>$<%out.println(r.getString(9)!= null ? r.getString(9) : '0');%></td>
+                        <td>$</td>
                         <td></td>   
                     </tr>
                      <tr>
                         <td>Proveedores y Servicios</td>
-                        <td>$<%out.println(r.getString(3)!= null ? r.getString(3) : '0');%></td>
+                        <td>$</td>
                         <td></td>   
                     </tr>                 
                 </tbody>
                    <tfoot>
-             <tr>
+                    <tr>
                         <th align="right"><strong>TOTAL</strong></th>
-                        <th></th>
-                        <th></th>   
+                        <th>0</th>
+                        <th>0</th>   
                     </tr>
         </tfoot>
             </table>
@@ -398,7 +387,7 @@
                     <tr>
                         <td>Capital</td>
                         <td></td>
-                        <td>$<%out.println(r.getString(6)!= null ? r.getString(6) : '0');%></td>   
+                        <td>$</td>   
                     </tr>
                 </tbody>
             <tfoot>
@@ -429,33 +418,33 @@
                 <tbody>
                     <tr>
                         <td>Ventas</td>
-                        <td>$<%out.println(r.getString(1)!= null ? r.getString(1) : '0');%></td>
+                        <td>$</td>
                         <td>Cuentas por Pagar</td>
-                        <td>$<%out.println(r.getString(5)!= null ? r.getString(5) : '0');%></td>   
+                        <td>$</td>   
                     </tr>
                     <tr>
                         <td>Cuentas por Cobrar</td>
-                        <td>$<%out.println(r.getString(2)!= null ? r.getString(2) : '0');%></td>
+                        <td>$</td>
                         <td>IVA Debito Fiscal</td>
-                        <td>$<%out.println(r.getString(8)!= null ? r.getString(8) : '0');%></td>   
+                        <td>$</td>   
                     </tr>
                       <tr>
                         <td>IVA Credito Fiscal</td>
-                        <td>$<%out.println(r.getString(7)!= null ? r.getString(7) : '0');%></td>
+                        <td>$</td>
                         <td>Salarios</td>
-                        <td>$<%out.println(r.getString(9)!= null ? r.getString(9) : '0');%></td>   
+                        <td>$</td>   
                     </tr>
                       <tr>
                         <td>Proveedores y Servicios</td>
-                        <td>$<%out.println(r.getString(3)!= null ? r.getString(3) : '0');%></td>
+                        <td>$</td>
                         <td style="background: #28a1f6; color:white"><strong>PATRIMONIO</strong></td>
                         <td></td>   
                     </tr>
                     <tr>
                         <td>Compras</td>
-                        <td>$<%out.println(r.getString(4)!= null ? r.getString(4) : '0');%></td>
+                        <td>$</td>
                         <td>Capital</td>
-                        <td>$<%out.println(r.getString(6)!= null ? r.getString(6) : '0');%></td>   
+                        <td>$</td>   
                     </tr>
                 </tbody>
                  <tfoot>
@@ -468,9 +457,6 @@
         </tfoot>
             </table>
             <hr>
-                                      <%}} catch (SQLException ex) {//captura error de existir alguno.
-                    System.out.println("error: "+ex );
-     }%>  
         </div>
         
     </div>

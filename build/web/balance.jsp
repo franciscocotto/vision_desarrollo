@@ -54,7 +54,7 @@
       paging: false,
       order: false,
       pageLength: 9,
-     footerCallback: function ( row, data, start, end, display ) {
+     /*footerCallback: function ( row, data, start, end, display ) {
             var api = this.api(), data;
  
             // Remove the formatting to get integer data for summation
@@ -107,7 +107,7 @@
         
         }
    });
-
+*/
    $('#tab2').DataTable({
       responsive: true,
       searching: false,
@@ -116,7 +116,7 @@
       paging: false,
       order: false,
       pageLength: 3,
-     footerCallback: function ( row, data, start, end, display ) {
+     /*footerCallback: function ( row, data, start, end, display ) {
             var api = this.api(), data;
  
             // Remove the formatting to get integer data for summation
@@ -169,7 +169,7 @@
         
         }
    });
-   
+   */
    $('#tab3').DataTable({
       responsive: true,
       searching: false,
@@ -178,7 +178,7 @@
       paging: false,
       order: false,
        pageLength: 1,
-           footerCallback: function ( row, data, start, end, display ) {
+        /*   footerCallback: function ( row, data, start, end, display ) {
             var api = this.api(), data;
  
             // Remove the formatting to get integer data for summation
@@ -231,7 +231,7 @@
         
         }
    });
-   
+   */
    $('#tab4').DataTable({
       responsive: true,
       searching: false,
@@ -240,7 +240,7 @@
       paging: false,
       order: false,
        pageLength: 5,
-                footerCallback: function ( row, data, start, end, display ) {
+               /* footerCallback: function ( row, data, start, end, display ) {
             var api = this.api(), data;
  
             // Remove the formatting to get integer data for summation
@@ -292,7 +292,7 @@
             );
         
         }
-   });
+   });*/
    $('a[data-toggle="tab"]').on('shown.bs.tab', function(e){
       $($.fn.dataTable.tables(true)).DataTable()
          .columns.adjust()
