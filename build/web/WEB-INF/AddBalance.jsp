@@ -116,7 +116,17 @@
 
     </aside>
     <!-- end: sidebar -->
-
+            <%
+                conexion.ConexionJDBC con = new conexion.ConexionJDBC();
+                Connection  cn = con.conectar();//se conecto a la base de datos
+                String sql="call balance_general()";
+                //String sql = "select * from compras";
+                Statement st;
+                try{
+                    st = cn.createStatement();
+                    ResultSet res = st.executeQuery(sql);
+                    while(res.next()){
+            %>
     <section role="main" class="content-body">
         <header class="page-header">
             <h2>Administraci&oacute;n de Ventas</h2>
@@ -143,7 +153,7 @@
                                         <i class="material-icons" style="font-size: 50px">request_quote</i>
                                     </div>
                                     <div class="col-xs-8 bleft">
-                                        <div class="huge">$1000</div>
+                                        <div class="huge" style="font-size: 1.2em"><%out.print(formatoImporte.format(res.getDouble("cuentas_por_cobrar")));%></div>
                                         <div>Total Cuentas por Cobrar</div>
                                     </div>
                                 </div>
@@ -159,7 +169,7 @@
                                          <i class="material-icons" style="font-size: 50px">payments</i>
                                     </div>
                                     <div class="col-xs-8 bleft">
-                                        <div class="huge">$</div>
+                                        <div class="huge" style="font-size: 1.2em"><%out.print(formatoImporte.format(res.getDouble("cuentas_por_pagar")));%></div>
                                        <div>Total Cuentas por Pagar</div>
                                     </div>
                                 </div>
@@ -174,8 +184,8 @@
                                         <i class="material-icons" style="font-size: 50px">monetization_on</i>
                                     </div>
                                     <div class="col-xs-8 bleft">
-                                        <div class="huge">$</div>
-                                        <div>Total de Ingresos Beneficios</div>
+                                        <div class="huge" style="font-size: 1.2em"><%out.print(formatoImporte.format(res.getDouble("caja")));%></div>
+                                        <div>Total Caja</div>
                                     </div>
                                 </div>
                             </div>
@@ -189,7 +199,7 @@
                                         <i class="material-icons" style="font-size: 50px">account_balance</i>
                                     </div>
                                     <div class="col-xs-8 bleft">
-                                        <div class="huge">$</div>
+                                        <div class="huge" style="font-size: 1.2em"><%out.print(formatoImporte.format(res.getDouble("capital_contable")));%></div>
                                         <div>Total de Dinero 
                                             <br> de Capital</div>
                                     </div>
@@ -205,8 +215,16 @@
 							</section>
 						</div>
 
-					</div>
-
+        </di>
+        <%
+                }
+                st.close();
+                cn.close();
+                }
+                catch(Exception e){
+                    e.printStackTrace();
+                }
+            %>
         <div class="row pt-4">
             <div class="col">
              
@@ -245,11 +263,10 @@
         <div role="tabpanel" class="tab-pane fade in active" id="example2-tab1">
             <hr>
             <%
-                conexion.ConexionJDBC con = new conexion.ConexionJDBC();
-                Connection  cn = con.conectar();//se conecto a la base de datos
-                String sql="call balance_comprobacion()";
+                con = new conexion.ConexionJDBC();
+                cn = con.conectar();//se conecto a la base de datos
+                sql="call balance_comprobacion()";
                 //String sql = "select * from compras";
-                Statement st;
                 try{
                     st = cn.createStatement();
                     ResultSet res = st.executeQuery(sql);
@@ -318,7 +335,7 @@
                     </tr> 
                 </tbody>
                 <tfoot>
-                    <tr style="font-style: bold">
+                    <tr>
                         <td>TOTAL</td>
                         <td><%out.print(formatoImporte.format(res.getDouble("Debe")));%></td>
                         <td><%out.print(formatoImporte.format(res.getDouble("Haber")));%></td>    
@@ -336,72 +353,122 @@
             %>
              <hr>
         </div>
+             <%
+                con = new conexion.ConexionJDBC();
+                cn = con.conectar();//se conecto a la base de datos
+                sql="call estado_resultado()";
+                //String sql = "select * from compras";
+                try{
+                    st = cn.createStatement();
+                    ResultSet res = st.executeQuery(sql);
+                    while(res.next()){
+            %>
         <div role="tabpanel" class="tab-pane fade" id="example2-tab2">
             <hr>
             <table id="tab2" class="table2 tabler2 table-striped table-bordered table-condensed" cellspacing="0" width="100%">
                 <thead>
                     <tr>
-                        <th>CUENTAS</th>
-                        <th>DEBE</th>
-                        <th>HABER</th>
+                        <th colspan="3">Estado de resultado</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Ventas</td>
-                        <td>$</td>
-                        <td></td>   
+                        <td>Ingreso por ventas</td>
+                        <td><%out.print(formatoImporte.format(res.getDouble("ingreso_por_ventas")));%></td>
                     </tr>
                      <tr>
-                        <td>Salarios</td>
-                        <td>$</td>
-                        <td></td>   
+                        <td>Costo de lo vendido</td>
+                        <td><%out.print(formatoImporte.format(res.getDouble("costo_de_venta")));%></td>
                     </tr>
                      <tr>
-                        <td>Proveedores y Servicios</td>
-                        <td>$</td>
-                        <td></td>   
-                    </tr>                 
-                </tbody>
-                   <tfoot>
+                        <td>Utilidad de comercialización</td>
+                        <td><%out.print(formatoImporte.format(res.getDouble("utilidad_comercializacion")));%></td>
+                    </tr>       
                     <tr>
-                        <th align="right"><strong>TOTAL</strong></th>
-                        <th>0</th>
-                        <th>0</th>   
+                        <td>Gastos</td>
+                        <td><%out.print(formatoImporte.format(res.getDouble("gastos")));%></td>
+                    </tr> 
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th align="right"><strong>Utilidad de operación</strong></th>
+                        <th><%out.print(formatoImporte.format(res.getDouble("utilidad_operacion")));%></th>
                     </tr>
-        </tfoot>
+                 </tfoot>
             </table>
+            <%
+                }
+                st.close();
+                cn.close();
+                }
+                catch(Exception e){
+                    e.printStackTrace();
+                }
+            %>
             <hr>
         </div>
           <div role="tabpanel" class="tab-pane fade" id="example2-tab3">
             <hr>
+            <%
+                con = new conexion.ConexionJDBC();
+                cn = con.conectar();//se conecto a la base de datos
+                sql="call estado_capital()";
+                //String sql = "select * from compras";
+                try{
+                    st = cn.createStatement();
+                    ResultSet res = st.executeQuery(sql);
+                    while(res.next()){
+            %>
             <table id="tab3" class="table2 tabler2 table-striped table-bordered table-condensed" cellspacing="0" width="100%">
                 <thead>
                     <tr>
-                        <th>CUENTAS</th>
-                        <th>DEBE</th>
-                        <th>HABER</th>
+                        <th colspan="3">Estado de Capital</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>Capital</td>
-                        <td></td>
-                        <td>$</td>   
+                        <td><%out.print(formatoImporte.format(res.getDouble("capital")));%></td>   
+                    </tr>
+                    <tr>
+                        <td>Utilidad de Operacion</td>
+                        <td><%out.print(formatoImporte.format(res.getDouble("utilidad_operacion")));%></td>   
+                    </tr>
+                    <tr>
+                        <td>Porcentaje de reinversion</td>
+                        <td>60%</td>   
                     </tr>
                 </tbody>
-            <tfoot>
-             <tr>
-                        <th align="right"><strong>TOTAL</strong></th>
-                        <th></th>
-                        <th></th>   
+                <tfoot>
+                    <tr>
+                        <th align="right"><strong>Capital Contable</strong></th>
+                        <th><%out.print(formatoImporte.format(res.getDouble("capital_contable")));%></th> 
                     </tr>
-        </tfoot>
+                </tfoot>
             </table>
+            <%
+                }
+                st.close();
+                cn.close();
+                }
+                catch(Exception e){
+                    e.printStackTrace();
+                }
+            %>
             <hr>
         </div>
           <div role="tabpanel" class="tab-pane fade" id="example2-tab4">
             <hr>
+            <%
+                con = new conexion.ConexionJDBC();
+                cn = con.conectar();//se conecto a la base de datos
+                sql="call balance_general()";
+                //String sql = "select * from compras";
+                try{
+                    st = cn.createStatement();
+                    ResultSet res = st.executeQuery(sql);
+                    while(res.next()){
+            %>
             <table id="tab4" class="table2 tabler2 table-striped table-bordered table-condensed" cellspacing="0" width="100%">
                 <thead>
                     <tr>
@@ -417,45 +484,48 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Ventas</td>
-                        <td>$</td>
+                        <td>Caja</td>
+                        <td><%out.print(formatoImporte.format(res.getDouble("caja")));%></td>
                         <td>Cuentas por Pagar</td>
-                        <td>$</td>   
+                        <td><%out.print(formatoImporte.format(res.getDouble("cuentas_por_pagar")));%></td>   
                     </tr>
                     <tr>
-                        <td>Cuentas por Cobrar</td>
-                        <td>$</td>
+                        <td>Inventario</td>
+                        <td><%out.print(formatoImporte.format(res.getDouble("inventario")));%></td>
                         <td>IVA Debito Fiscal</td>
-                        <td>$</td>   
+                        <td><%out.print(formatoImporte.format(res.getDouble("iva_debito")));%></td>   
                     </tr>
                       <tr>
-                        <td>IVA Credito Fiscal</td>
-                        <td>$</td>
-                        <td>Salarios</td>
-                        <td>$</td>   
-                    </tr>
-                      <tr>
-                        <td>Proveedores y Servicios</td>
-                        <td>$</td>
-                        <td style="background: #28a1f6; color:white"><strong>PATRIMONIO</strong></td>
-                        <td></td>   
+                        <td>Cuentas por Cobrar</td>
+                        <td><%out.print(formatoImporte.format(res.getDouble("cuentas_por_cobrar")));%></td>
+                        <td>Capital Contable</td>
+                        <td><%out.print(formatoImporte.format(res.getDouble("capital_contable")));%></td>   
                     </tr>
                     <tr>
-                        <td>Compras</td>
-                        <td>$</td>
-                        <td>Capital</td>
-                        <td>$</td>   
+                        <td>IVA Credito Fiscal</td>
+                        <td><%out.print(formatoImporte.format(res.getDouble("iva_credito")));%></td>
+                        <td>Utilidad Retenida</td>
+                        <td><%out.print(formatoImporte.format(res.getDouble("utilidad_retenida")));%></td>   
                     </tr>
                 </tbody>
                  <tfoot>
-             <tr>
+                    <tr>
                         <th align="right"><strong>TOTAL:</strong></th>
-                        <th></th>
+                        <th><%out.print(formatoImporte.format(res.getDouble("activos")));%></th>
                          <th align="right"><strong>TOTAL:</strong></th>
-                        <th></th>   
+                        <th><%out.print(formatoImporte.format(res.getDouble("participaciones")));%></th>   
                     </tr>
-        </tfoot>
+                </tfoot>
             </table>
+            <%
+                }
+                st.close();
+                cn.close();
+                }
+                catch(Exception e){
+                    e.printStackTrace();
+                }
+            %>
             <hr>
         </div>
         
