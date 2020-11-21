@@ -3,6 +3,7 @@
     Created on : 12-nov-2018, 23:40:36
     Author     : Angel
 --%>
+<%@page import="modelo.ventas"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page session="true" %>
 <!DOCTYPE html>
@@ -42,6 +43,18 @@
         <!--llama todos los script-->
         <script src="js/scripts.js"></script>
         <script>   
+            
+      ﻿$(document).ready(function () {  
+             var response = <%out.print(ventas.respuesta);%>;
+             if(response==1){
+                 BootstrapDialog.alert('El Monto de la Venta es superior al total de existentica en inventario');
+                 <% ventas.setRespuesta(2); %>
+                
+             }else{
+                 
+             }
+            });
+    
 //            script para edita datos de tabla en modal
        $( "a.edit" ).each(function(index) { 
            $(this).on("click", function(){

@@ -20,7 +20,7 @@ public class ventas {
     Double abono;
     Double descuento;
     Double total;
-
+    public static Integer respuesta; 
     //constructor por defecto
    public ventas() {
        
@@ -117,6 +117,14 @@ public class ventas {
 
     public void setTotal(Double total) {
         this.total = total;
+    }
+
+    public static Integer getRespuesta() {
+        return respuesta;
+    }
+
+    public static void setRespuesta(Integer respuesta) {
+        ventas.respuesta = respuesta;
     }
     
    

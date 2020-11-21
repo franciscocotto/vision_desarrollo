@@ -7,6 +7,9 @@ package servlets;
 
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -53,7 +56,11 @@ public class formVenta extends HttpServlet {
           
             //creando objeto para guardar cliente
             modelo.addVenta addventa = new modelo.addVenta();
+        try {
             addventa.agrega(venta);
+        } catch (SQLException ex) {
+            Logger.getLogger(formVenta.class.getName()).log(Level.SEVERE, null, ex);
+        }
             response.sendRedirect("ventas");//si se guarda exitosamente se redirecciona a membresia
     }
 

@@ -23,7 +23,8 @@ public class addCompra {
            //conexion a la base de datos
             ConexionJDBC con = new ConexionJDBC();    
             con.conectar();
-            String sql2="SELECT SUM(debe) AS deuda, SUM(haber) AS existencia FROM cuenta_caja"; 
+            if(compra.pago== 1){
+                     String sql2="SELECT SUM(debe) AS deuda, SUM(haber) AS existencia FROM cuenta_caja"; 
             
                 try(Statement st3 = con.conectar().createStatement();){
                       ResultSet resultado=st3.executeQuery(sql2);  //resultset %> 
@@ -78,7 +79,45 @@ public class addCompra {
         }
            
            }
-           
+            
+            }else{
+                      //INSERT SQL
+            String sql = "CALL ingreso_compras(?,?,?,?,?,?)";
+            String status = "";
+            //insert into compras(1 nombre,2 descripcion,3 cantidad,4 precio,5 forma_de_pago,6 estado,7 abono,8 total_deuda)
+           //PREPARANDO SCRIPT PARA SUBIDA
+            try(PreparedStatement pst = con.getConexion().prepareStatement(sql)){
+                pst.setString(1, compra.nombre);
+                pst.setString(2, compra.descripcion);
+                pst.setInt(3, compra.cantidad);
+                pst.setDouble(4, compra.precio);
+                pst.setInt(5, compra.pago); 
+                pst.setInt(6, compra.pago);
+                /*if(compra.pago==1){
+                double value = 0.0;
+                 pst.setDouble(7, compra.precio);
+                 pst.setDouble(8, value);               
+                }else{
+                double value = 0.0;
+                 pst.setDouble(7, value);
+                 pst.setDouble(8, compra.precio);
+                    
+                    }*/
+                int i = pst.executeUpdate();
+                // ENVIA MENSAJE DEPENDIENDO SI DE GUARDO O NO
+                if (i != 0) {
+                    status = "Guardado";
+                } else {
+                    status = "No Guardado";
+                 }
+                compras.setRespuesta(2);
+                con.conectar().close();
+ 
+            } catch (SQLException ex) {//captura excepciones del codigo si hubo error
+                ex.printStackTrace();         
+        }
+            }
+             
        }
        //metodo para editar  registros en la base de datos
          public void edita(compras compra) throws SQLException{

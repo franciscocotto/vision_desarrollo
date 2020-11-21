@@ -14,11 +14,30 @@ import java.sql.SQLException;
 
 
 public class addVenta {
+     Double deuda, existencia, res;
        //metodo para agregar registros en la base de datos  
-       public void agrega(ventas venta){
+       public void agrega(ventas venta) throws SQLException{
            //conexion a la base de datos
             ConexionJDBC con = new ConexionJDBC();    
             con.conectar();
+             String sql2="SELECT SUM(debe) AS deuda, SUM(haber) AS existencia FROM cuenta_inventario"; 
+   
+                try(Statement st3 = con.conectar().createStatement();){
+                      ResultSet resultado=st3.executeQuery(sql2);  //resultset %> 
+                      while (resultado.next()){
+                        deuda = Double.parseDouble(resultado.getString("deuda"));
+                        existencia = Double.parseDouble(resultado.getString("existencia"));
+                      }
+
+                     res = deuda - existencia;
+                   } catch (SQLException ex) {//captura error de existir alguno.
+                    System.out.println("error: "+ex );
+                }   
+             if(venta.precio > res){
+                ventas.setRespuesta(1);
+                con.conectar().close();
+           } else{
+            
             //INSERT SQL
             //String sql = "INSERT INTO ventas (nombre,descripcion,cantidad,precio,forma_de_pago,estado,abono,total_pago)"+"VALUES(?,?,?,?,?,?,?,?)";
             String status = "";
@@ -45,14 +64,32 @@ public class addVenta {
             } catch (SQLException ex) {//captura excepciones del codigo si hubo error
                 ex.printStackTrace();         
         }
-            
+             }   
             
        }
        //metodo para editar  registros en la base de datos
-         public void edita(ventas venta){
+         public void edita(ventas venta) throws SQLException{
             //conexion a la base de datos
             ConexionJDBC con = new ConexionJDBC();    
             con.conectar();
+                         String sql2="SELECT SUM(debe) AS deuda, SUM(haber) AS existencia FROM cuenta_inventario"; 
+   
+                try(Statement st3 = con.conectar().createStatement();){
+                      ResultSet resultado=st3.executeQuery(sql2);  //resultset %> 
+                      while (resultado.next()){
+                        deuda = Double.parseDouble(resultado.getString("deuda"));
+                        existencia = Double.parseDouble(resultado.getString("existencia"));
+                      }
+
+                     res = deuda - existencia;
+                   } catch (SQLException ex) {//captura error de existir alguno.
+                    System.out.println("error: "+ex );
+                }   
+             if(venta.precio > res){
+                ventas.setRespuesta(1);
+                con.conectar().close();
+           } else{
+            
             //UPDATE SQL
             String sql = "call actualizar_ventas(?,?,?,?,?,?,?,?,?)";
             String status = "";
@@ -85,7 +122,7 @@ public class addVenta {
                 ex.printStackTrace();         
         }
             
-            
+             }
             
        }
          
