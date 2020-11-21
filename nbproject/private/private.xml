@@ -3,12 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Proyectos%20Java/vision_desarrollo/web/WEB-INF/tableCobros.jsp</file>
-            <file>file:/D:/Proyectos%20Java/vision_desarrollo/web/balance.jsp</file>
-            <file>file:/D:/Proyectos%20Java/vision_desarrollo/web/css/sb-admin.css</file>
-            <file>file:/D:/Proyectos%20Java/vision_desarrollo/web/WEB-INF/AddBalance.jsp</file>
-            <file>file:/D:/Proyectos%20Java/vision_desarrollo/web/WEB-INF/tableVentas.jsp</file>
-            <file>file:/D:/Proyectos%20Java/vision_desarrollo/src/java/modelo/addCompra.java</file>
+            <file>file:/C:/Users/Lance/Documents/vision_desarrollo/web/balance.jsp</file>
+            <file>file:/C:/Users/Lance/Documents/vision_desarrollo/web/WEB-INF/header-top.jsp</file>
+            <file>file:/C:/Users/Lance/Documents/vision_desarrollo/web/WEB-INF/AddBalance.jsp</file>
+            <file>file:/C:/Users/Lance/Documents/vision_desarrollo/web/css/sb-admin.css</file>
+            <file>file:/C:/Users/Lance/Documents/vision_desarrollo/src/java/servlets/formCompra.java</file>
+            <file>file:/C:/Users/Lance/Documents/vision_desarrollo/src/java/modelo/addCompra.java</file>
         </group>
     </open-files>
 </project-private>

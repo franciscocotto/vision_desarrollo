@@ -51,7 +51,7 @@
                             <input class="form-control nit" type="text" name="nit" placeholder="Ingresar el NIT del Cliente" required="required" maxlength="17" minlength="17"/>    
                         </div>
                     </div>
-                    <script>
+<!--                    <script>
                         
                   function CalculoImc(monto, monto2, total) {
 
@@ -115,7 +115,7 @@
                         <div class="col-md-8">
                            <input class="form-control" type="text" name="imc"  id="total"  readonly="readonly" required="required"/>               
                         </div>
-                    </div>
+                    </div>-->
                     <div class="form-group">
                         <label class="col-md-3 control-label" style="margin-right: 15px !important;"><strong class="colorred">*</strong>Fecha de Ingreso</label>
 

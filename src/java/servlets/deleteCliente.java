@@ -50,7 +50,7 @@ public class deleteCliente extends HttpServlet {
         } catch (SQLException ex) {//captura error de existir
             Logger.getLogger(deleteCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
-            response.sendRedirect("index.jsp");//se redirecciona al index una vez terminado el eliminado de registros
+            response.sendRedirect("LoginServlet");//se redirecciona al index una vez terminado el eliminado de registros
     }
 
     /**

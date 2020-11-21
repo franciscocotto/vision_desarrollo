@@ -20,7 +20,7 @@ public class addClientes {
             ConexionJDBC con = new ConexionJDBC();    
             con.conectar();
             //INSERT SQL
-            String sql = "INSERT INTO cliente (nombre,apellidos,dui,nit,sexo,edad,fechaingreso,membresia,peso,estatura,imc)"+"VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO cliente (nombre,apellidos,dui,nit,sexo,edad,fechaingreso,membresia)"+"VALUES(?,?,?,?,?,?,?,?)";
             String status = "";
            //PREPARANDO SCRIPT PARA SUBIDA
             try(PreparedStatement pst = con.getConexion().prepareStatement(sql)){
@@ -32,9 +32,9 @@ public class addClientes {
                 pst.setInt(6, cliente.edad);
                 pst.setString(7, cliente.ingreso);
                 pst.setInt(8, cliente.membresia);
-                pst.setInt(9, cliente.peso);
-                pst.setInt(10, cliente.estatura);
-                pst.setDouble(11, cliente.imc);
+//                pst.setInt(9, cliente.peso);
+//                pst.setInt(10, cliente.estatura);
+//                pst.setDouble(11, cliente.imc);
                 int i = pst.executeUpdate();
                 // ENVIA MENSAJE DEPENDIENDO SI DE GUARDO O NO
                 if (i != 0) {
@@ -57,7 +57,7 @@ public class addClientes {
             con.conectar();
             //UPDATE SQL
             String sql = "UPDATE cliente\n" +
-            "SET  nombre=?, apellidos=?, dui=?, nit=?, sexo=?, edad=?, fechaingreso=?, membresia=?, peso=?, estatura=?, imc=?\n" +
+            "SET  nombre=?, apellidos=?, dui=?, nit=?, sexo=?, edad=?, fechaingreso=?, membresia=?\n" +
             "WHERE  id_campo="+cliente.codigo+";";
             String status = "";
             try(PreparedStatement pst = con.getConexion().prepareStatement(sql)){
@@ -69,9 +69,9 @@ public class addClientes {
                 pst.setInt(6, cliente.edad);
                 pst.setString(7, cliente.ingreso);
                 pst.setInt(8, cliente.membresia);
-                pst.setInt(9, cliente.peso);
-                pst.setInt(10, cliente.estatura);
-                pst.setDouble(11, cliente.imc);
+//                pst.setInt(9, cliente.peso);
+//                pst.setInt(10, cliente.estatura);
+//                pst.setDouble(11, cliente.imc);
                 int i = pst.executeUpdate();
                  // ENVIA MENSAJE DEPENDIENDO SI DE EDITO O NO
                  if (i != 0) {

@@ -42,9 +42,9 @@ public class formClientes extends HttpServlet {
             String dui = request.getParameter("dui");
             String nit = request.getParameter("nit");
             String sexo = request.getParameter("sexo");
-            String peso = request.getParameter("peso");
-            String estatura = request.getParameter("estatura");
-            String imc = request.getParameter("imc");
+//            String peso = request.getParameter("peso");
+//            String estatura = request.getParameter("estatura");
+//            String imc = request.getParameter("imc");
             String ingreso = request.getParameter("fechaingreso");
             String membresia = request.getParameter("membresia");
             
@@ -59,9 +59,9 @@ public class formClientes extends HttpServlet {
             cliente.setSexo(sexo);
             cliente.setIngreso(ingreso);
             cliente.setMembresia(Integer.parseInt(membresia));
-            cliente.setPeso(Integer.parseInt(peso));
-            cliente.setEstatura(Integer.parseInt(estatura));
-            cliente.setImc(Double.parseDouble(imc));
+//            cliente.setPeso(Integer.parseInt(peso));
+//            cliente.setEstatura(Integer.parseInt(estatura));
+//            cliente.setImc(Double.parseDouble(imc));
             //creando objeto para guardar cliente
             modelo.addClientes nuevoCliente = new modelo.addClientes();
             nuevoCliente.agrega(cliente);
