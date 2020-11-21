@@ -5,6 +5,9 @@
 				<a href="../2.2.0" class="logo">
 					<img src="images/logo.png" width="155" height="50" alt="Porto Admin" />
 				</a>
+                            <div class="d-md-none btn_menu_movil toggle-sidebar-left" data-toggle-class="sidebar-left-opened" data-target="html" data-fire-event="sidebar-left-opened">
+					<i class="fas fa-bars" aria-label="Toggle sidebar"></i>
+				</div>
 				
 			</div>
 			
