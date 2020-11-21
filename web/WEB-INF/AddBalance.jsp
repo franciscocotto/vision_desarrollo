@@ -215,7 +215,7 @@
 							</section>
 						</div>
 
-        </di>
+        </div>
         <%
                 }
                 st.close();
